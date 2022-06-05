@@ -1,0 +1,65 @@
+
+// guide https://www.sass.hk/guide/
+
+body {
+    font-size: 20px;
+}
+
+h1 {
+    color: burlywood
+}
+
+p {
+    font-size: large;
+    font-weight: 500;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+// 定义名为 rounded-corners 的选择器，可以通过 @include 使用
+@mixin rounded-corners {
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 10px;
+}
+
+
+.start {
+    border: 0.5em solid;
+    @include rounded-corners;
+
+    h1 {
+        color: olive
+    }
+
+    // 表示.start 的直接子节点， 孙子节点不会继承该属性
+    > h1 {
+        background-color: cyan;
+    }
+
+    // + h1 表示，紧跟着
+    + h1 {
+        border: 10px solid #0f0;
+    }
+
+    // ~ h1, 表示所有跟在.start 之后的同层元素
+    ~ h1 { 
+        background-color: #f1f;
+     }
+
+    ~ p {
+        border: 1px solid #000 {
+            left: 0px;
+            right: 0px;
+        };
+    }
+}
+
+.error {
+    border: 1px solid red;
+    background-color: #fdd;
+}
+
+.seriousError {
+    @extend .error;
+    border-width: 3px;
+}
